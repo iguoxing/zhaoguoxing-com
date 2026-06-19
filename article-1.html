@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我的人生使命 - 国星聊成长</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0b0f1a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  .poster {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,200,80,0.08);
+  }
+
+  /* Background layers */
+  .poster-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(30,50,90,0.7) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 90%, rgba(60,30,10,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(20,35,65,0.5) 0%, transparent 60%),
+      linear-gradient(168deg, #0c1225 0%, #101b33 25%, #0e1830 50%, #131f38 75%, #0a1020 100%);
+  }
+
+  .top-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c8960a, #e8c040, #d4881a, #c8960a);
+    z-index: 5;
+    box-shadow: 0 0 18px rgba(232,192,64,0.35);
+  }
+
+  .bg-dots {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,220,130,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 65%, rgba(255,220,130,0.15) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 70% 15%, rgba(255,220,130,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 80%, rgba(255,220,130,0.12) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 55%, rgba(255,220,130,0.18) 0%, transparent 100%),
+      radial-gradient(1.2px 1.2px at 15% 90%, rgba(255,220,130,0.1) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 35%, rgba(255,220,130,0.15) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .bottom-line {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(232,192,64,0.3) 30%, rgba(232,192,64,0.5) 50%, rgba(232,192,64,0.3) 70%, transparent 100%);
+    z-index: 5;
+  }
+
+  .geo-shape { position: absolute; border-radius: 50%; opacity: 0.05; z-index: 1; }
+  .geo-1 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(80,140,220,0.5), transparent 70%); top: -100px; right: -100px; }
+  .geo-2 { width: 180px; height: 180px; background: radial-gradient(circle, rgba(220,180,80,0.4), transparent 70%); bottom: 120px; left: -70px; }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-image:
+      linear-gradient(rgba(255,220,130,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,220,130,0.025) 1px, transparent 1px);
+    background-size: 36px 36px;
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 3;
+    padding: 44px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Back button */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(212,168,42,0.7);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(212,168,42,0.06);
+    border: 1px solid rgba(212,168,42,0.12);
+    transition: all 0.2s;
+    align-self: flex-start;
+  }
+  .back-btn:hover {
+    background: rgba(212,168,42,0.12);
+    color: rgba(232,192,64,0.9);
+    border-color: rgba(212,168,42,0.25);
+  }
+
+  /* Article header */
+  .article-header {
+    text-align: left;
+  }
+
+  .article-theme-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: #d4a82a;
+    letter-spacing: 2px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border: 1px solid rgba(212,168,42,0.3);
+    border-radius: 100px;
+    margin-bottom: 14px;
+    background: rgba(212,168,42,0.07);
+  }
+
+  .article-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    font-family: 'Noto Serif SC', serif;
+    margin-bottom: 10px;
+  }
+
+  .article-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .article-meta span {
+    white-space: nowrap;
+  }
+
+  /* Article content */
+  .article-body {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .article-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .article-section h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #e8dcc8;
+    letter-spacing: 1.5px;
+    padding-left: 12px;
+    border-left: 3px solid rgba(212,168,42,0.4);
+  }
+
+  .article-section p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.85;
+    letter-spacing: 0.5px;
+  }
+
+  /* Quote box */
+  .quote-box {
+    text-align: center;
+    padding: 16px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(212,168,42,0.06), rgba(180,100,30,0.03));
+    border: 1px solid rgba(212,168,42,0.15);
+  }
+
+  .quote-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0ead8;
+    letter-spacing: 2px;
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.6;
+  }
+  .quote-text span { color: #e8c040; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,168,42,0.2), transparent);
+  }
+
+  /* Article footer */
+  .article-footer {
+    text-align: center;
+    padding-top: 8px;
+  }
+
+  .article-footer-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .back-btn-bottom {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(212,168,42,0.7);
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: rgba(212,168,42,0.06);
+    border: 1px solid rgba(212,168,42,0.15);
+    transition: all 0.2s;
+  }
+  .back-btn-bottom:hover {
+    background: rgba(212,168,42,0.12);
+    color: rgba(232,192,64,0.9);
+    border-color: rgba(212,168,42,0.3);
+  }
+
+  .footer-slogan {
+    font-size: 10px;
+    color: rgba(212,168,42,0.4);
+    margin-top: 14px;
+    letter-spacing: 2px;
+  }
+
+  /* Mobile responsive */
+  @media screen and (max-width: 480px) {
+    body { padding: 8px; }
+    .poster { border-radius: 12px; }
+    .content { padding: 30px 18px; gap: 20px; }
+    .top-glow { height: 2px; }
+    .geo-1 { width: 180px; height: 180px; top: -60px; right: -60px; }
+    .geo-2 { width: 110px; height: 110px; bottom: 100px; left: -40px; }
+    .article-title { font-size: 22px; letter-spacing: 1px; }
+    .article-section h2 { font-size: 15px; }
+    .article-section p { font-size: 13px; line-height: 1.8; }
+    .quote-text { font-size: 13px; letter-spacing: 1px; }
+  }
+
+  @media screen and (max-width: 360px) {
+    .content { padding: 26px 14px; gap: 18px; }
+    .article-title { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <div class="poster-bg"></div>
+  <div class="bg-dots"></div>
+  <div class="geo-shape geo-1"></div>
+  <div class="geo-shape geo-2"></div>
+  <div class="grid-overlay"></div>
+  <div class="top-glow"></div>
+  <div class="bottom-line"></div>
+
+  <div class="content">
+    <a href="index.html" class="back-btn">&larr; 返回首页</a>
+
+    <div class="article-header">
+      <span class="article-theme-tag">自我探索</span>
+      <h1 class="article-title">我的人生使命</h1>
+      <div class="article-meta">
+        <span>2020.03.08</span>
+        <span>&middot;</span>
+        <span>国星聊成长</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="article-body">
+        <div class="article-section">
+          <h2>如何找到人生使命</h2>
+          <p>很多人终其一生都在寻找自己的人生使命。其实，使命并不遥远，它藏在三个交集里：你喜欢做的事、你擅长做的事、以及对你有意义的事。</p>
+          <p>当你把这三者放在一起，找到它们的交集，那就是你的人生使命所在。自我探索得越深入，你就越容易找到它。</p>
+        </div>
+        <div class="article-section">
+          <h2>三个关键问题</h2>
+          <p>1. 什么事情让你做起来忘记时间？这是你「喜欢」的信号。</p>
+          <p>2. 什么事情别人觉得难，你却觉得轻松？这是你「擅长」的证据。</p>
+          <p>3. 什么事情让你觉得即使没有回报也愿意做？这是「有意义」的标志。</p>
+        </div>
+        <div class="article-section">
+          <h2>使命不是找到的，是活出来的</h2>
+          <p>人生使命不是一次性找到的答案，而是在持续行动和反思中逐渐清晰的方向。每一次复盘、每一次尝试、每一次跌倒后的重新站起，都在帮你逼近那个核心。</p>
+          <p>不要等「找到使命」才开始行动，而是在行动中发现使命。日拱一卒，功不唐捐。</p>
+        </div>
+    </div>
+
+    <div class="quote-box">
+      <p class="quote-text">日拱一卒，<span>功不唐捐</span></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="article-footer">
+      <p class="article-footer-text">关注公众号「国星聊成长」阅读更多文章</p>
+      <a href="index.html" class="back-btn-bottom">&larr; 返回首页</a>
+      <p class="footer-slogan">行动改变命运 &middot; 目标成就未来</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -400,6 +400,25 @@
   .service-point-text { font-size: 10.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.5px; }
 
   /* Articles */
+  .article-theme-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .article-theme-label {
+    font-size: 11px;
+    color: rgba(212,168,42,0.5);
+    letter-spacing: 2px;
+    font-weight: 500;
+    padding-left: 2px;
+    margin-top: 6px;
+  }
+
+  .article-theme-group:first-child .article-theme-label {
+    margin-top: 0;
+  }
+
   .articles-list {
     display: flex;
     flex-direction: column;
@@ -414,7 +433,7 @@
     border-radius: 10px;
     background: rgba(255,255,255,0.025);
     border: 1px solid rgba(255,255,255,0.05);
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
     cursor: pointer;
     text-decoration: none;
   }
@@ -422,6 +441,16 @@
   .article-card:hover {
     background: rgba(212,168,42,0.06);
     border-color: rgba(212,168,42,0.15);
+    transform: translateX(2px);
+  }
+
+  .article-card:hover .article-title {
+    color: #e8c040;
+  }
+
+  .article-card:hover .article-tag {
+    background: linear-gradient(135deg, rgba(212,168,42,0.25), rgba(180,130,30,0.15));
+    border-color: rgba(212,168,42,0.3);
   }
 
   .article-tag {
@@ -459,6 +488,33 @@
     font-size: 10px;
     color: rgba(212,168,42,0.35);
     margin-top: 4px;
+  }
+
+  .article-arrow {
+    flex-shrink: 0;
+    color: rgba(255,255,255,0.15);
+    font-size: 14px;
+    align-self: center;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .article-card:hover .article-arrow {
+    color: rgba(232,192,64,0.6);
+    transform: translateX(3px);
+  }
+
+  .read-more-link {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .read-more-link a {
+    font-size: 11.5px;
+    color: rgba(212,168,42,0.5);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  .read-more-link a:hover {
+    color: rgba(232,192,64,0.8);
   }
 
   /* Contact */
@@ -568,6 +624,10 @@
     .service-point-text { font-size: 9.5px; }
 
     .quote-text { font-size: 15px; letter-spacing: 2px; }
+
+    .article-theme-label { font-size: 10px; letter-spacing: 1px; }
+    .article-title { font-size: 12.5px; }
+    .article-card:hover { transform: none; }
   }
 
   @media screen and (max-width: 360px) {
@@ -695,39 +755,75 @@
         <div class="section-icon icon-gold">文</div>
         <span class="section-label">精选文章</span>
       </div>
-      <div class="articles-list">
-        <div class="article-card">
-          <div class="article-tag">&#x1F31F;</div>
-          <div class="article-body">
-            <p class="article-title">我的人生使命</p>
-            <p class="article-desc">深入自我探索，从喜欢的事、擅长的事和有意义的事中找到内在联系，发现你的人生使命</p>
-            <p class="article-date">2020.03.08</p>
-          </div>
+
+      <div class="article-theme-group">
+        <div class="article-theme-label">— 个人成长 —</div>
+        <div class="articles-list">
+          <a class="article-card" href="article-1.html">
+            <div class="article-tag">&#x1F31F;</div>
+            <div class="article-body">
+              <p class="article-title">我的人生使命</p>
+              <p class="article-desc">从喜欢的事、擅长的事和有意义的事中找到交集，发现你的人生使命</p>
+              <p class="article-date">2020.03.08 &middot; 自我探索</p>
+            </div>
+            <span class="article-arrow">&#x203A;</span>
+          </a>
+          <a class="article-card" href="article-2.html">
+            <div class="article-tag">&#x1F331;</div>
+            <div class="article-body">
+              <p class="article-title">构建生活，一枝一叶</p>
+              <p class="article-desc">从人生第一个月度复盘开始，思考人生目标，一枝一叶构建属于自己的生活</p>
+              <p class="article-date">2020.03.26 &middot; 成长方法论</p>
+            </div>
+            <span class="article-arrow">&#x203A;</span>
+          </a>
+          <a class="article-card" href="article-6.html">
+            <div class="article-tag">&#x1F49A;</div>
+            <div class="article-body">
+              <p class="article-title">2026年2月复盘：把家庭作为「共修场」</p>
+              <p class="article-desc">每个人成长的时代背景不同，把家庭作为共同成长的场域，全家一起变好</p>
+              <p class="article-date">2026.03.01 &middot; 家庭成长</p>
+            </div>
+            <span class="article-arrow">&#x203A;</span>
+          </a>
         </div>
-        <div class="article-card">
-          <div class="article-tag">&#x1F4DD;</div>
-          <div class="article-body">
-            <p class="article-title">国星的2022年年度复盘总结</p>
-            <p class="article-desc">从个人成长、事业发展、健康、情感生活等多维度进行年度复盘，1500天持续复盘的方法论实践</p>
-            <p class="article-date">2023.01.01</p>
-          </div>
+      </div>
+
+      <div class="article-theme-group">
+        <div class="article-theme-label">— 复盘与思考 —</div>
+        <div class="articles-list">
+          <a class="article-card" href="article-3.html">
+            <div class="article-tag">&#x1F4DD;</div>
+            <div class="article-body">
+              <p class="article-title">国星的2022年年度复盘总结</p>
+              <p class="article-desc">从个人成长、事业发展、健康、情感生活多维度年度复盘，1500天持续复盘方法论实践</p>
+              <p class="article-date">2023.01.01 &middot; 复盘总结</p>
+            </div>
+            <span class="article-arrow">&#x203A;</span>
+          </a>
+          <a class="article-card" href="article-4.html">
+            <div class="article-tag">&#x1F4B0;</div>
+            <div class="article-body">
+              <p class="article-title">关于金钱与财富的思考</p>
+              <p class="article-desc">没有真正的金钱观就不会有真正的成功。日拱一卒，功不唐捐——关于财富的深度思考</p>
+              <p class="article-date">2023.01.28 &middot; 财富思考</p>
+            </div>
+            <span class="article-arrow">&#x203A;</span>
+          </a>
+          <a class="article-card" href="article-5.html">
+            <div class="article-tag">&#x1F4DA;</div>
+            <div class="article-body">
+              <p class="article-title">《金钱心理学》读后感</p>
+              <p class="article-desc">时间自由是财富能带给你的最大红利。关于自由与金钱关系的深度思考</p>
+              <p class="article-date">2024.05.08 &middot; 读书感悟</p>
+            </div>
+            <span class="article-arrow">&#x203A;</span>
+          </a>
         </div>
-        <div class="article-card">
-          <div class="article-tag">&#x1F331;</div>
-          <div class="article-body">
-            <p class="article-title">构建生活，一枝一叶</p>
-            <p class="article-desc">从人生第一个月度复盘开始，思考人生目标，反思内心迷失感，一枝一叶构建自己的生活</p>
-            <p class="article-date">2020.03.26</p>
-          </div>
-        </div>
-        <div class="article-card">
-          <div class="article-tag">&#x1F4B0;</div>
-          <div class="article-body">
-            <p class="article-title">关于金钱与财富的思考</p>
-            <p class="article-desc">没有真正的金钱观，就不会有真正的成功。日拱一卒，功不唐捐——关于财富的深度思考</p>
-            <p class="article-date">2023.01.28</p>
-          </div>
-        </div>
+      </div>
+
+      <div class="read-more-link">
+        <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">关注公众号「国星聊成长」阅读更多 &raquo;</a>
       </div>
     </div>
 

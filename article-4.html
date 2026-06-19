@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>关于金钱与财富的思考 - 国星聊成长</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0b0f1a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  .poster {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,200,80,0.08);
+  }
+
+  /* Background layers */
+  .poster-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(30,50,90,0.7) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 90%, rgba(60,30,10,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(20,35,65,0.5) 0%, transparent 60%),
+      linear-gradient(168deg, #0c1225 0%, #101b33 25%, #0e1830 50%, #131f38 75%, #0a1020 100%);
+  }
+
+  .top-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c8960a, #e8c040, #d4881a, #c8960a);
+    z-index: 5;
+    box-shadow: 0 0 18px rgba(232,192,64,0.35);
+  }
+
+  .bg-dots {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,220,130,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 65%, rgba(255,220,130,0.15) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 70% 15%, rgba(255,220,130,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 80%, rgba(255,220,130,0.12) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 55%, rgba(255,220,130,0.18) 0%, transparent 100%),
+      radial-gradient(1.2px 1.2px at 15% 90%, rgba(255,220,130,0.1) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 35%, rgba(255,220,130,0.15) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .bottom-line {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(232,192,64,0.3) 30%, rgba(232,192,64,0.5) 50%, rgba(232,192,64,0.3) 70%, transparent 100%);
+    z-index: 5;
+  }
+
+  .geo-shape { position: absolute; border-radius: 50%; opacity: 0.05; z-index: 1; }
+  .geo-1 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(80,140,220,0.5), transparent 70%); top: -100px; right: -100px; }
+  .geo-2 { width: 180px; height: 180px; background: radial-gradient(circle, rgba(220,180,80,0.4), transparent 70%); bottom: 120px; left: -70px; }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-image:
+      linear-gradient(rgba(255,220,130,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,220,130,0.025) 1px, transparent 1px);
+    background-size: 36px 36px;
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 3;
+    padding: 44px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Back button */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(212,168,42,0.7);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(212,168,42,0.06);
+    border: 1px solid rgba(212,168,42,0.12);
+    transition: all 0.2s;
+    align-self: flex-start;
+  }
+  .back-btn:hover {
+    background: rgba(212,168,42,0.12);
+    color: rgba(232,192,64,0.9);
+    border-color: rgba(212,168,42,0.25);
+  }
+
+  /* Article header */
+  .article-header {
+    text-align: left;
+  }
+
+  .article-theme-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: #d4a82a;
+    letter-spacing: 2px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border: 1px solid rgba(212,168,42,0.3);
+    border-radius: 100px;
+    margin-bottom: 14px;
+    background: rgba(212,168,42,0.07);
+  }
+
+  .article-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    font-family: 'Noto Serif SC', serif;
+    margin-bottom: 10px;
+  }
+
+  .article-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .article-meta span {
+    white-space: nowrap;
+  }
+
+  /* Article content */
+  .article-body {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .article-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .article-section h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #e8dcc8;
+    letter-spacing: 1.5px;
+    padding-left: 12px;
+    border-left: 3px solid rgba(212,168,42,0.4);
+  }
+
+  .article-section p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.85;
+    letter-spacing: 0.5px;
+  }
+
+  /* Quote box */
+  .quote-box {
+    text-align: center;
+    padding: 16px 24px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(212,168,42,0.06), rgba(180,100,30,0.03));
+    border: 1px solid rgba(212,168,42,0.15);
+  }
+
+  .quote-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0ead8;
+    letter-spacing: 2px;
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.6;
+  }
+  .quote-text span { color: #e8c040; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,168,42,0.2), transparent);
+  }
+
+  /* Article footer */
+  .article-footer {
+    text-align: center;
+    padding-top: 8px;
+  }
+
+  .article-footer-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .back-btn-bottom {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(212,168,42,0.7);
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    background: rgba(212,168,42,0.06);
+    border: 1px solid rgba(212,168,42,0.15);
+    transition: all 0.2s;
+  }
+  .back-btn-bottom:hover {
+    background: rgba(212,168,42,0.12);
+    color: rgba(232,192,64,0.9);
+    border-color: rgba(212,168,42,0.3);
+  }
+
+  .footer-slogan {
+    font-size: 10px;
+    color: rgba(212,168,42,0.4);
+    margin-top: 14px;
+    letter-spacing: 2px;
+  }
+
+  /* Mobile responsive */
+  @media screen and (max-width: 480px) {
+    body { padding: 8px; }
+    .poster { border-radius: 12px; }
+    .content { padding: 30px 18px; gap: 20px; }
+    .top-glow { height: 2px; }
+    .geo-1 { width: 180px; height: 180px; top: -60px; right: -60px; }
+    .geo-2 { width: 110px; height: 110px; bottom: 100px; left: -40px; }
+    .article-title { font-size: 22px; letter-spacing: 1px; }
+    .article-section h2 { font-size: 15px; }
+    .article-section p { font-size: 13px; line-height: 1.8; }
+    .quote-text { font-size: 13px; letter-spacing: 1px; }
+  }
+
+  @media screen and (max-width: 360px) {
+    .content { padding: 26px 14px; gap: 18px; }
+    .article-title { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <div class="poster-bg"></div>
+  <div class="bg-dots"></div>
+  <div class="geo-shape geo-1"></div>
+  <div class="geo-shape geo-2"></div>
+  <div class="grid-overlay"></div>
+  <div class="top-glow"></div>
+  <div class="bottom-line"></div>
+
+  <div class="content">
+    <a href="index.html" class="back-btn">&larr; 返回首页</a>
+
+    <div class="article-header">
+      <span class="article-theme-tag">财富思考</span>
+      <h1 class="article-title">关于金钱与财富的思考</h1>
+      <div class="article-meta">
+        <span>2023.01.28</span>
+        <span>&middot;</span>
+        <span>国星聊成长</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="article-body">
+        <div class="article-section">
+          <h2>金钱观决定财富高度</h2>
+          <p>没有真正的金钱观，就不会有真正的成功。很多人追求财富，却从未认真思考过：钱对自己意味着什么？财富的本质是什么？</p>
+          <p>金钱是工具，不是目的。当你把赚钱当作唯一目标时，往往会失去更重要的东西。但当你明白金钱是价值交换的媒介时，赚钱就成了自然的结果。</p>
+        </div>
+        <div class="article-section">
+          <h2>日拱一卒，功不唐捐</h2>
+          <p>财富积累不是一夜暴富，而是日拱一卒的过程。每天存一点、学一点、投资一点，时间会给你回报。</p>
+          <p>功不唐捐——每一分努力都不会白费。即使暂时看不到结果，它也在某个地方积累着，等到时机成熟时就会爆发。</p>
+        </div>
+        <div class="article-section">
+          <h2>财富的三个层次</h2>
+          <p>第一层：赚钱的能力——通过技能和劳动获取收入。</p>
+          <p>第二层：管钱的能力——让钱生钱，建立被动收入。</p>
+          <p>第三层：用钱的能力——用财富创造价值，实现人生意义。</p>
+          <p>大多数人停留在第一层，少数人到了第二层，极少数人到达第三层。真正的财富自由，不是数字的堆积，而是选择的自由。</p>
+        </div>
+    </div>
+
+    <div class="quote-box">
+      <p class="quote-text">日拱一卒，<span>功不唐捐</span></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="article-footer">
+      <p class="article-footer-text">关注公众号「国星聊成长」阅读更多文章</p>
+      <a href="index.html" class="back-btn-bottom">&larr; 返回首页</a>
+      <p class="footer-slogan">行动改变命运 &middot; 目标成就未来</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
