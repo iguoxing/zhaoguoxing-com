@@ -399,6 +399,68 @@
   .service-point-icon { font-size: 22px; margin-bottom: 4px; opacity: 0.85; }
   .service-point-text { font-size: 10.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.5px; }
 
+  /* Articles */
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .article-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s, border-color 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .article-card:hover {
+    background: rgba(212,168,42,0.06);
+    border-color: rgba(212,168,42,0.15);
+  }
+
+  .article-tag {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(212,168,42,0.15), rgba(180,130,30,0.1));
+    border: 1px solid rgba(212,168,42,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .article-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-title {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255,245,210,0.9);
+    margin-bottom: 3px;
+    line-height: 1.5;
+  }
+
+  .article-desc {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.55;
+  }
+
+  .article-date {
+    font-size: 10px;
+    color: rgba(212,168,42,0.35);
+    margin-top: 4px;
+  }
+
   /* Contact */
   .contact-section {
     margin-top: auto;
@@ -627,6 +689,48 @@
       </div>
     </div>
 
+    <!-- Selected Articles -->
+    <div>
+      <div class="section-header">
+        <div class="section-icon icon-gold">文</div>
+        <span class="section-label">精选文章</span>
+      </div>
+      <div class="articles-list">
+        <div class="article-card">
+          <div class="article-tag">&#x1F31F;</div>
+          <div class="article-body">
+            <p class="article-title">我的人生使命</p>
+            <p class="article-desc">深入自我探索，从喜欢的事、擅长的事和有意义的事中找到内在联系，发现你的人生使命</p>
+            <p class="article-date">2020.03.08</p>
+          </div>
+        </div>
+        <div class="article-card">
+          <div class="article-tag">&#x1F4DD;</div>
+          <div class="article-body">
+            <p class="article-title">国星的2022年年度复盘总结</p>
+            <p class="article-desc">从个人成长、事业发展、健康、情感生活等多维度进行年度复盘，1500天持续复盘的方法论实践</p>
+            <p class="article-date">2023.01.01</p>
+          </div>
+        </div>
+        <div class="article-card">
+          <div class="article-tag">&#x1F331;</div>
+          <div class="article-body">
+            <p class="article-title">构建生活，一枝一叶</p>
+            <p class="article-desc">从人生第一个月度复盘开始，思考人生目标，反思内心迷失感，一枝一叶构建自己的生活</p>
+            <p class="article-date">2020.03.26</p>
+          </div>
+        </div>
+        <div class="article-card">
+          <div class="article-tag">&#x1F4B0;</div>
+          <div class="article-body">
+            <p class="article-title">关于金钱与财富的思考</p>
+            <p class="article-desc">没有真正的金钱观，就不会有真正的成功。日拱一卒，功不唐捐——关于财富的深度思考</p>
+            <p class="article-date">2023.01.28</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Contact -->
     <div class="contact-section">
       <div class="section-header">
@@ -658,7 +762,7 @@
       </div>
 
       <div class="footer">
-        <p class="footer-url">https://zhaoguoxing.com/</p>
+        <p class="footer-url">https://zhaoguoxing.com</p>
         <p class="footer-slogan">行动改变命运 · 目标成就未来</p>
       </div>
     </div>
