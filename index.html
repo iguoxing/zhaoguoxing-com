@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行动督导咨询 - 赵国星</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f0ece3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .poster {
+    width: 720px;
+    min-height: 1080px;
+    background: linear-gradient(165deg, #1a2342 0%, #0d1525 40%, #162038 70%, #1e3a5f 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+  }
+  
+  /* Decorative top accent */
+  .top-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #c41e3a, #d44a2c, #e89b3c);
+  }
+  
+  /* Geometric decorations */
+  .geo-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+  }
+  .geo-1 {
+    width: 350px; height: 350px;
+    background: #4a90d9;
+    top: -80px; right: -80px;
+  }
+  .geo-2 {
+    width: 200px; height: 200px;
+    background: #e89b3c;
+    bottom: 180px; left: -60px;
+  }
+  .geo-3 {
+    width: 120px; height: 120px;
+    background: #c41e3a;
+    bottom: 320px; right: 30px;
+  }
+  
+  /* Grid pattern overlay */
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+  
+  /* Content container */
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  
+  /* Header section */
+  .header {
+    text-align: center;
+  }
+  
+  .tag-line {
+    display: inline-block;
+    font-size: 13px;
+    color: #e89b3c;
+    letter-spacing: 5px;
+    font-weight: 500;
+    padding: 6px 20px;
+    border: 1px solid rgba(232,155,60,0.35);
+    border-radius: 100px;
+    margin-bottom: 18px;
+    background: rgba(232,155,60,0.08);
+  }
+  
+  .main-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font-family: 'Noto Serif SC', serif;
+  }
+  
+  .main-title span {
+    background: linear-gradient(135deg, #e89b3c, #d44a2c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .sub-title {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  
+  /* Profile section */
+  .profile {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  
+  .avatar-frame {
+    width: 130px;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid rgba(232,155,60,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    background: #2a3a55;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .avatar-placeholder {
+    font-size: 14px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  .info-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .name-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  
+  .name {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  
+  .title-badge {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    padding: 3px 10px;
+    background: rgba(74,144,217,0.15);
+    border-radius: 4px;
+    border: 1px solid rgba(74,144,217,0.25);
+  }
+  
+  .bio-text {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+  }
+  
+  .stats-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  
+  .stat-item {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  
+  .stat-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e89b3c;
+  }
+  
+  .stat-label {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.45);
+  }
+  
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  }
+  
+  /* Strengths section */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  
+  .section-icon {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .icon-gold { background: linear-gradient(135deg, #e89b3c, #d44a2c); }
+  .icon-blue { background: linear-gradient(135deg, #4a90d9, #2a6bb5); }
+  .icon-red { background: linear-gradient(135deg, #c41e3a, #9a1530); }
+  
+  .section-label {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  
+  .tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .tag {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.8);
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  /* Achievements */
+  .achievements {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .achievement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.2s;
+  }
+  
+  .ach-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e89b3c, #d44a2c);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .ach-text {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.6;
+  }
+  
+  .ach-text strong {
+    color: #e89b3c;
+    font-weight: 600;
+  }
+  
+  /* Quote */
+  .quote-box {
+    text-align: center;
+    padding: 18px 28px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(232,155,60,0.1), rgba(212,74,44,0.05));
+    border: 1px solid rgba(232,155,60,0.2);
+    position: relative;
+  }
+  
+  .quote-mark {
+    font-size: 36px;
+    color: rgba(232,155,60,0.3);
+    position: absolute;
+    top: 4px;
+    left: 16px;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  
+  .quote-text {
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 3px;
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.5;
+  }
+  
+  .quote-text span {
+    color: #e89b3c;
+  }
+  
+  /* Contact section */
+  .contact-section {
+    margin-top: auto;
+    padding-top: 16px;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  
+  .contact-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .ci-wechat { background: #07c160; }
+  .ci-official { background: #c41e3a; }
+  .ci-web { background: #4a90d9; }
+  .ci-phone { background: #666; grid-column: span 2; justify-self: center; }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-label {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .contact-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .footer-url {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+  }
+  
+  .footer-slogan {
+    font-size: 11px;
+    color: rgba(232,155,60,0.5);
+    margin-top: 6px;
+    letter-spacing: 2px;
+  }
+
+  /* Service highlight bar at bottom */
+  .service-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 14px 0;
+    margin-top: 8px;
+    border-radius: 10px;
+    background: rgba(196,30,58,0.1);
+    border: 1px solid rgba(196,30,58,0.2);
+  }
+  
+  .service-point {
+    text-align: center;
+    flex: 1;
+  }
+  
+  .service-point-icon {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  
+  .service-point-text {
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <div class="top-accent"></div>
+  <div class="geo-shape geo-1"></div>
+  <div class="geo-shape geo-2"></div>
+  <div class="geo-shape geo-3"></div>
+  <div class="grid-overlay"></div>
+  
+  <div class="content">
+    <!-- Header -->
+    <div class="header">
+      <div class="tag-line">个人成长 · 行动督导</div>
+      <h1 class="main-title">目标<span>行动</span>监督师</h1>
+      <p class="sub-title">从想到做到，让目标成为现实</p>
+    </div>
+    
+    <!-- Profile -->
+    <div class="profile">
+      <div class="avatar-frame">
+        <img src="avatar.png"
+             alt="赵国星" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="info-col">
+        <div class="name-row">
+          <span class="name">赵国星</span>
+          <span class="title-badge">目标行动监督师</span>
+        </div>
+        <p class="bio-text">曾任两家上市公司高级前端开发工程师<br>8年程序开发工作经验 · 4年AI行业经验</p>
+        <div class="stats-row">
+          <div class="stat-item"><span class="stat-num">800+</span><span class="stat-label">小时督导时长</span></div>
+          <div class="stat-item"><span class="stat-num">1500+</span><span class="stat-label">天持续复盘</span></div>
+          <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">篇成长文章</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <!-- Core Strengths -->
+    <div>
+      <div class="section-header">
+        <div class="section-icon icon-gold">核</div>
+        <span class="section-label">核心优势</span>
+      </div>
+      <div class="tags-grid">
+        <span class="tag">执行力强 · 拒绝拖延</span>
+        <span class="tag">擅于解决行动卡点</span>
+        <span class="tag">AI工具高效赋能</span>
+        <span class="tag">营销增长方法工具</span>
+        <span class="tag">每日复盘方法论</span>
+        <span class="tag">跨领域实战经验</span>
+      </div>
+    </div>
+    
+    <!-- Achievements -->
+    <div>
+      <div class="section-header">
+        <div class="section-icon icon-blue">绩</div>
+        <span class="section-label">真实成果</span>
+      </div>
+      <div class="achievements">
+        <div class="achievement-item">
+          <div class="ach-num">1</div>
+          <p class="ach-text"><strong>1年间</strong>从北京到杭州，买房结婚，从程序猿转型HR到跨境创业——人生全面升级</p>
+        </div>
+        <div class="achievement-item">
+          <div class="ach-num">2</div>
+          <p class="ach-text">帮助目标监督伙伴<strong>3个月拿到年薪60w的offer</strong>，实现职业跃迁</p>
+        </div>
+        <div class="achievement-item">
+          <div class="ach-num">3</div>
+          <p class="ach-text">撰写<strong>500篇公众号</strong>「国星聊成长」，坚持<strong>1500天以上</strong>每日复盘</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quote -->
+    <div class="quote-box">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">有目标，<span>就一定能实现</span></p>
+    </div>
+    
+    <!-- Services -->
+    <div class="service-bar">
+      <div class="service-point">
+        <div class="service-point-icon">&#x26A1;</div>
+        <div class="service-point-text">解决行动卡点</div>
+      </div>
+      <div class="service-point">
+        <div class="service-point-icon">&#x1F9E0;</div>
+        <div class="service-point-text">AI工具分享</div>
+      </div>
+      <div class="service-point">
+        <div class="service-point-icon">&#x1F4C8;</div>
+        <div class="service-point-text">每日复盘陪伴</div>
+      </div>
+      <div class="service-point">
+        <div class="service-point-icon">&#x2B50;</div>
+        <div class="service-point-text">目标达成路径</div>
+      </div>
+    </div>
+    
+    <!-- Contact -->
+    <div class="contact-section">
+      <div class="section-header">
+        <div class="section-icon icon-red">联</div>
+        <span class="section-label">联系方式</span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon ci-wechat">&#x1F4F1;</div>
+          <div class="contact-info">
+            <span class="contact-label">微信同号</span>
+            <span class="contact-value">13067890063</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon ci-official">&#x1F4F0;</div>
+          <div class="contact-info">
+            <span class="contact-label">公众号</span>
+            <span class="contact-value">国星聊成长</span>
+          </div>
+        </div>
+        <div class="contact-item" style="grid-column: span 2;">
+          <div class="contact-icon ci-web">&#x1F310;</div>
+          <div class="contact-info">
+            <span class="contact-label">官网</span>
+            <span class="contact-value">coach.zhaoguoxing.com</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p class="footer-url">https://coach.zhaoguoxing.com/</p>
+        <p class="footer-slogan">行动改变命运 · 目标成就未来</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
